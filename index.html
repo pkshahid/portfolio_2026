@@ -1,0 +1,1990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <style>
+        :root {
+            --color-primary: #c55a11;
+            --color-accent: #8b6f47;
+            --color-accent-teal: #a0826d;
+            --color-dark: #f8f6f3;
+            --color-darker: #ede9e4;
+            --color-surface: #ffffff;
+            --color-surface-light: #faf8f5;
+            --color-text: #2c2c2c;
+            --color-text-secondary: #666666;
+            --color-border: rgba(0, 0, 0, 0.08);
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --duration-fast: 200ms;
+            --duration-normal: 300ms;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #ede9e4 0%, #f8f6f3 100%);
+            color: var(--color-text);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-border);
+            padding: var(--space-sm) 0;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #c55a11 0%, #903b00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: var(--space-lg);
+        }
+
+        nav a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all var(--duration-fast);
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #c55a11 0%, #903b00 100%);
+            transition: width var(--duration-normal);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            color: var(--color-text);
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                gap: var(--space-md);
+            }
+            nav a {
+                font-size: 12px;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(197, 90, 17, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(160, 130, 109, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 8vw, 72px);
+            font-weight: 800;
+            margin-bottom: var(--space-md);
+            line-height: 1.1;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, #c55a11 0%, #903b00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-lg);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: var(--space-md);
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .btn {
+            padding: 12px 32px;
+            border-radius: var(--radius-md);
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all var(--duration-normal);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #c55a11 0%, #903b00 100%);
+            color: white;
+            box-shadow: 0 8px 24px rgba(197, 90, 17, 0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(197, 90, 17, 0.35);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-primary);
+            border: 2px solid var(--color-primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-primary);
+            color: white;
+            transform: translateY(-4px);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Sections */
+        section {
+            padding: var(--space-xl) var(--space-md);
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: var(--space-lg);
+            text-align: center;
+        }
+
+        .section-title .highlight {
+            background: linear-gradient(135deg, #c55a11 0%, #903b00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-description {
+            text-align: center;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-lg);
+            font-size: 16px;
+        }
+
+        /* Photography Section */
+        .photography {
+            background: rgb(255 255 255);
+        }
+
+        .gallery-filters {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-md);
+            margin-bottom: var(--space-xl);
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            background: var(--color-surface);
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--color-text);
+            cursor: pointer;
+            transition: all var(--duration-fast);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+            box-shadow: 0 8px 16px rgba(197, 90, 17, 0.2);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            aspect-ratio: 1;
+            background: var(--color-surface);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all var(--duration-normal);
+        }
+
+        .gallery-item:hover {
+            box-shadow: 0 12px 32px rgba(197, 90, 17, 0.15);
+            transform: translateY(-8px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--duration-normal);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(197, 90, 17, 0.8) 0%, rgba(160, 130, 109, 0.8) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity var(--duration-normal);
+            flex-direction: column;
+            color: white;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: var(--space-xs);
+        }
+
+        .gallery-meta {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .gallery-icon {
+            font-size: 24px;
+            margin-top: var(--space-md);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90vh;
+        }
+
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 85vh;
+            border-radius: var(--radius-lg);
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .lightbox-info {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            margin-top: var(--space-md);
+            text-align: center;
+        }
+
+        .lightbox-info h3 {
+            margin-bottom: var(--space-xs);
+            font-size: 18px;
+        }
+
+        .lightbox-info p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            transition: all var(--duration-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all var(--duration-fast);
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        /* Skills Section */
+        .skills {
+            background: rgb(197 90 17 / 6%);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
+        }
+
+        .skill-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            transition: all var(--duration-normal);
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .skill-card-image {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: var(--radius-md) var(--radius-md) 0 0;
+            margin: -var(--space-lg) -var(--space-lg) var(--space-md) -var(--space-lg);
+            transition: transform var(--duration-normal);
+        }
+
+        .skill-card:hover .skill-card-image {
+            transform: scale(1.05);
+        }
+
+        .skill-card:hover {
+            border-color: var(--color-primary);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(197, 90, 17, 0.15);
+            background: rgba(197, 90, 17, 0.04);
+        }
+
+        .skill-card h3 {
+            font-size: 20px;
+            margin-bottom: var(--space-md);
+            color: var(--color-primary);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-xs);
+        }
+
+        .tag {
+            background: rgba(197, 90, 17, 0.12);
+            color: #a55d1c;
+            padding: 6px 12px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Projects Section */
+        .projects {
+            background: #ffffff;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
+        }
+
+        .project-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: all var(--duration-normal);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            border-color: #a0826d;
+            transform: translateY(-12px);
+            box-shadow: 0 16px 40px rgba(197, 90, 17, 0.12);
+        }
+
+        .project-header {
+            height: 250px;
+            background: linear-gradient(135deg, rgba(197, 90, 17, 0.08) 0%, rgba(160, 130, 109, 0.08) 100%);
+            border-bottom: 1px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .project-header img {
+            width: -webkit-fill-available;
+        }
+
+        .project-header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            /* background: rgba(197, 90, 17, 0.5); */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        .project-icon {
+            position: relative;
+            z-index: 2;
+            mix-blend-mode: screen;
+        }
+
+        .project-body {
+            padding: var(--space-lg);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-body h3 {
+            font-size: 20px;
+            margin-bottom: var(--space-sm);
+            color: var(--color-text);
+        }
+
+        .project-body p {
+            color: var(--color-text-secondary);
+            font-size: 14px;
+            margin-bottom: var(--space-md);
+            flex-grow: 1;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-xs);
+            margin-bottom: var(--space-md);
+        }
+
+        .project-tag {
+            background: rgba(160, 130, 109, 0.15);
+            color: #8b6f47;
+            padding: 4px 10px;
+            border-radius: var(--radius-sm);
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .project-links {
+            display: flex;
+            gap: var(--space-sm);
+        }
+
+        .project-link {
+            flex: 1;
+            padding: 8px 12px;
+            background: rgba(197, 90, 17, 0.1);
+            color: #c55a11;
+            text-decoration: none;
+            border-radius: var(--radius-sm);
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all var(--duration-fast);
+            border: 1px solid transparent;
+        }
+
+        .project-link:hover {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+        }
+
+        /* Contributions & Blogs */
+        .contributions-grid,
+        .blogs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
+        }
+
+        #contributions {
+            background-color: #fffaf0;
+        }
+
+        .contribution-card,
+        .blog-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            transition: all var(--duration-normal);
+            cursor: pointer;
+        }
+
+        .contribution-card:hover,
+        .blog-card:hover {
+            border-color: var(--color-primary);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(197, 90, 17, 0.12);
+            background: rgba(197, 90, 17, 0.04);
+        }
+
+        .contribution-card h3,
+        .blog-card h3 {
+            font-size: 18px;
+            margin-bottom: var(--space-sm);
+            color: var(--color-text);
+        }
+
+        .contribution-meta,
+        .blog-meta {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-md);
+        }
+
+        /* Contact Section */
+        .contact {
+            background: rgba(197, 90, 17, 0.04);
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-description {
+            font-size: 18px;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-lg);
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-md);
+            flex-wrap: wrap;
+            margin-bottom: var(--space-lg);
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            padding: 10px 20px;
+            background: var(--color-surface-light);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            color: var(--color-text);
+            text-decoration: none;
+            transition: all var(--duration-fast);
+            font-size: 14px;
+        }
+
+        .contact-link img {
+            width: 25px;
+        }
+
+        .contact-link:hover {
+            border-color: var(--color-primary);
+            background: rgba(197, 90, 17, 0.08);
+            color: var(--color-primary);
+            transform: translateY(-4px);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(237, 233, 228, 0.6);
+            border-top: 1px solid var(--color-border);
+            padding: var(--space-lg) var(--space-md);
+            text-align: center;
+            color: var(--color-text-secondary);
+            font-size: 14px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 28px;
+            }
+
+            nav ul {
+                gap: var(--space-sm);
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            section {
+                padding: var(--space-lg) var(--space-md);
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: var(--space-md);
+            }
+
+            .lightbox-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+
+            .lightbox-prev {
+                left: 10px;
+            }
+
+            .lightbox-next {
+                right: 10px;
+            }
+        }
+
+        /* Scroll to Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--color-primary);
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 999;
+            transition: all var(--duration-normal);
+            font-size: 24px;
+            color: white;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(197, 90, 17, 0.35);
+        }
+
+        .scroll-top.show {
+            display: flex;
+        }
+
+        /* Page Management */
+        .page {
+            display: none;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .page-transition {
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        /* About Section Styles */
+        #about {
+            background-color: #f2f2f2 !important;
+        }
+
+        .about-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-xl);
+            align-items: center;
+            margin-bottom: var(--space-xl);
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-border);
+            padding: var(--space-xl);
+            transition: all var(--duration-normal);
+        }
+
+        .about-hero:hover {
+            box-shadow: 0 12px 32px rgba(197, 90, 17, 0.12);
+            border-color: var(--color-primary);
+        }
+
+        .about-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .avatar-img {
+            width: -webkit-fill-available;
+            border-radius: inherit;
+        }
+
+        .about-avatar {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(197, 90, 17, 0.1) 0%, rgba(160, 130, 109, 0.1) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 120px;
+            animation: float 3s ease-in-out infinite;
+            border: 3px solid var(--color-primary);
+            box-shadow: 0 8px 24px rgba(197, 90, 17, 0.15);
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .about-text h3 {
+            font-size: 28px;
+            margin-bottom: var(--space-md);
+            color: var(--color-text);
+            background: linear-gradient(135deg, #c55a11 0%, #903b00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-text p {
+            font-size: 16px;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-md);
+            line-height: 1.8;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-md);
+            margin: var(--space-lg) 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: var(--space-md);
+            background: rgba(197, 90, 17, 0.04);
+            border-radius: var(--radius-md);
+            transition: all var(--duration-normal);
+        }
+
+        .stat-item:hover {
+            background: rgba(197, 90, 17, 0.08);
+            transform: translateY(-4px);
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #c55a11 0%, #903b00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--color-text-secondary);
+            font-weight: 600;
+            margin-top: var(--space-xs);
+        }
+
+        .about-details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
+        }
+
+        .detail-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            transition: all var(--duration-normal);
+            cursor: pointer;
+        }
+
+        .detail-card:hover {
+            border-color: var(--color-primary);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(197, 90, 17, 0.15);
+            background: rgba(197, 90, 17, 0.02);
+        }
+
+        .detail-icon {
+            font-size: 48px;
+            margin-bottom: var(--space-md);
+            display: inline-block;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .detail-card h4 {
+            font-size: 18px;
+            color: var(--color-primary);
+            margin-bottom: var(--space-sm);
+        }
+
+        .detail-card p {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+
+        .timeline-section {
+            margin-top: var(--space-xl);
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-border);
+            padding: var(--space-xl);
+        }
+
+        .timeline-section h4 {
+            font-size: 22px;
+            color: var(--color-text);
+            margin-bottom: var(--space-lg);
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: var(--space-lg);
+            margin-bottom: var(--space-lg);
+            position: relative;
+            padding-left: var(--space-lg);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            background: var(--color-primary);
+            border-radius: 50%;
+            border: 3px solid var(--color-surface);
+            box-shadow: 0 0 0 3px var(--color-primary);
+        }
+
+        .timeline-item:last-child::after {
+            display: none;
+        }
+
+        .timeline-content h5 {
+            font-size: 16px;
+            color: var(--color-text);
+            margin-bottom: var(--space-xs);
+        }
+
+        .timeline-content p {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+        }
+
+        .skills-tags-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-md);
+            margin-top: var(--space-lg);
+        }
+
+        .skill-badge {
+            background: linear-gradient(135deg, rgba(197, 90, 17, 0.1) 0%, rgba(160, 130, 109, 0.1) 100%);
+            border: 2px solid var(--color-primary);
+            border-radius: var(--radius-md);
+            padding: var(--space-md);
+            text-align: center;
+            transition: all var(--duration-normal);
+            cursor: pointer;
+        }
+
+        .skill-badge:hover {
+            background: linear-gradient(135deg, rgba(197, 90, 17, 0.2) 0%, rgba(160, 130, 109, 0.2) 100%);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(197, 90, 17, 0.2);
+        }
+
+        .skill-badge-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+
+        @media (max-width: 768px) {
+            .about-hero {
+                grid-template-columns: 1fr;
+                padding: var(--space-lg);
+            }
+
+            .about-avatar {
+                width: 200px;
+                height: 200px;
+                font-size: 80px;
+            }
+            
+
+            .about-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .detail-card {
+                margin-bottom: var(--space-md);
+            }
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 16px var(--space-md);
+            background: rgba(197, 90, 17, 0.04);
+            border-bottom: 1px solid var(--color-border);
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            margin-top: 60px;
+        }
+
+        .breadcrumb a {
+            color: var(--color-primary);
+            text-decoration: none;
+            cursor: pointer;
+            transition: color var(--duration-fast);
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo" onclick="navigateTo('home')">ShahidDev</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <!-- <li><a href="#contributions">Contributions</a></li> -->
+                <li><a href="#about">About</a></li>
+                <!-- <li><a href="#blogs">Blogs</a></li> -->
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="assets/Mohammed_Shahid_Resume.pdf" title="Resume" download>Resume</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Hey there,<span class="highlight">I am Mohammed Shahid</span></h1>
+            <p>Building scalable, production-grade applications with modern backend technologies. Specializing in Django, FastAPI, and cloud deployment strategies.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Get In Touch</button>
+                <a class="btn btn-secondary" href="assets/Mohammed_Shahid_Resume.pdf" title="Resume" download>Hire</a>
+            </div>
+        </div>    
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About <span class="highlight">Me</span></h2>
+            
+            <!-- Hero Card with Avatar and Intro -->
+            <div class="about-hero">
+                <div class="about-image">
+                    <div class="about-avatar">
+                        <img class="avatar-img" src="./images/me.png">
+                    </div>
+                </div>
+                <div class="about-text">
+                    <h3>Backend Developer & Full-Stack Architect</h3>
+                    <p>I'm a passionate backend developer with <span id="experience-block-1">5+ years</span> of professional experience building scalable, production-grade web applications. My journey has been driven by continuous learning, solving complex problems, and delivering solutions that create real business value.</p>
+                    
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="stat-number" id="exp-block-2">5+</div>
+                            <div class="stat-label">Years Experience</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">15+</div>
+                            <div class="stat-label">Projects Delivered</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Quality Focus</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Details Grid -->
+            <div class="about-details-grid">
+                <div class="detail-card">
+                    <!-- <div class="detail-icon">🎯</div> -->
+                    <h4>My Mission</h4>
+                    <p>Build robust, scalable backend systems that power modern applications with clean code, best practices, and solutions that grow with businesses.</p>
+                </div>
+
+                <div class="detail-card">
+                   <!-- <div class="detail-icon">💡</div> -->
+                    <h4>What I Specialize In</h4>
+                    <p>Full-stack web development with backend focus. From designing OAuth systems to architecting microservices, I deliver comprehensive end-to-end solutions.</p>
+                </div>
+
+                <div class="detail-card">
+                   <!-- <div class="detail-icon">🚀</div> -->
+                    <h4>Why I Stand Out</h4>
+                    <p>I combine technical expertise with entrepreneurial thinking. I build products that create value, not just features. Passionate about optimization and monetization.</p>
+                </div>
+
+                <div class="detail-card">
+                   <!-- <div class="detail-icon">🔧</div> -->
+                    <h4>My Approach</h4>
+                    <p>Every project starts with understanding business goals. I write maintainable code, follow design patterns, and ensure scalability from day one.</p>
+                </div>
+
+                <div class="detail-card">
+                   <!-- <div class="detail-icon">🛡️</div> -->
+                    <h4>Security & Performance</h4>
+                    <p>Security and performance are always top priorities. I implement best practices for authentication, encryption, and optimization at every level.</p>
+                </div>
+
+                <div class="detail-card">
+                   <!-- <div class="detail-icon">🌱</div> -->
+                    <h4>Continuous Growth</h4>
+                    <p>Always learning and improving. I stay updated with latest technologies, best practices, and industry trends to deliver cutting-edge solutions.</p>
+                </div>
+            </div>
+
+            <!-- Timeline Section -->
+
+            <!--
+            <div class="timeline-section">
+                <h4>My Development Journey</h4>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h5>🎓 Foundation</h5>
+                        <p>Started with web fundamentals, discovered passion for backend architecture and system design</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h5>🏗️ Building Expertise</h5>
+                        <p>Created multiple Django and FastAPI applications, mastered database design and optimization</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h5>🔐 Advanced Topics</h5>
+                        <p>Implemented complex authentication systems (OAuth 2.0, SSO), security best practices</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h5>🐳 DevOps Mastery</h5>
+                        <p>Designed and deployed microservices architectures with Docker, CI/CD pipelines</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h5>💼 Full-Stack Projects</h5>
+                        <p>Developed e-commerce platforms, admin dashboards, and complex business logic systems</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h5>🌍 Open Source & Community</h5>
+                        <p>Contributing to open-source projects, sharing knowledge, exploring monetization strategies</p>
+                    </div>
+                </div>
+            </div>
+             -->
+
+            <!-- Core Strengths -->
+            <div class="timeline-section" style="margin-top: var(--space-xl);">
+                <h4 style="margin-bottom: var(--space-lg);">Core Technical Strengths</h4>
+                <div class="skills-tags-grid">
+                    <div class="skill-badge">
+                        <div class="skill-badge-label">Go, Python & JavaScript</div>
+                    </div>
+                    <div class="skill-badge">
+                        <div class="skill-badge-label">Django & FastAPI</div>
+                    </div>
+                    <div class="skill-badge">
+                        <div class="skill-badge-label">OAuth 2.0, SSO & JWT Authentication</div>
+                    </div>
+                    <div class="skill-badge">
+                        <div class="skill-badge-label">PostgreSQL Databases</div>
+                    </div>
+                    <div class="skill-badge">
+                        <div class="skill-badge-label">Docker & Docker Compose</div>
+                    </div>
+                    <div class="skill-badge">
+                        <div class="skill-badge-label">Microservices & Monolith</div>
+                    </div>
+                    <div class="skill-badge">
+                        <div class="skill-badge-label">REST APIs</div>
+                    </div>
+                    <div class="skill-badge">
+                        <div class="skill-badge-label">System Design</div>
+                    </div>
+                    <div class="skill-badge">
+                        <div class="skill-badge-label">Cloud Deployment</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div style="text-align: center; margin-top: var(--space-xl);">
+                <p style="font-size: 18px; color: var(--color-text-secondary); margin-bottom: var(--space-lg);">Looking for a developer? Let's build something amazing together!</p>
+                <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Get In Touch</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+                <div class="container">
+                    <h2 class="section-title">Technical <span class="highlight">Expertise</span></h2>
+                    <p class="section-description">Years of experience building robust backend systems</p>
+            
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <img src="./images/backend.png" alt="Django Development" class="skill-card-image">
+                    <h3>Backend Development</h3>
+                    <div class="skill-tags">
+                        <span class="tag">Django</span>
+                        <span class="tag">FastAPI</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">REST APIs</span>
+                        <span class="tag">Celery</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <img src="./images/security-auth.png" alt="OAuth Security" class="skill-card-image">
+                    <h3>Authentication & Security</h3>
+                    <div class="skill-tags">
+                        <span class="tag">OAuth 2.0</span>
+                        <span class="tag">SSO</span>
+                        <span class="tag">JWT</span>
+                        <span class="tag">Password Security</span>
+                        <span class="tag">Role-Based Access</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <img src="./images/database-design.png" alt="PostgreSQL Database" class="skill-card-image">
+                    <h3>Database Design</h3>
+                    <div class="skill-tags">
+                        <span class="tag">PostgreSQL</span>
+                        <span class="tag">SQL</span>
+                        <span class="tag">ORM Design</span>
+                        <span class="tag">Query Optimization</span>
+                        <span class="tag">Redis</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <img src="./images/devops.png" alt="DevOps Deployment" class="skill-card-image">
+                    <h3>DevOps & Deployment</h3>
+                    <div class="skill-tags">
+                        <span class="tag">Docker</span>
+                        <span class="tag">Docker Compose</span>
+                        <span class="tag">Linux</span>
+                        <span class="tag">CI/CD</span>
+                        <span class="tag">Cloud Deploy</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <img src="./images/frontend.png" alt="Frontend Development" class="skill-card-image">
+                    <h3>Frontend Integration</h3>
+                    <div class="skill-tags">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">HTML/CSS</span>
+                        <span class="tag">API Integration</span>
+                        <span class="tag">Django Templates</span>
+                        <span class="tag">Responsive Design</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <img src="https://www.einfochips.com/wp-content/uploads/2024/11/Orchestrate_microservices_Composed-Docker-Applications-in-a-cluster.webp" alt="Microservices Architecture" class="skill-card-image">
+                    <h3>Architecture &amp; Tools</h3>
+                    <div class="skill-tags">
+                        <span class="tag">System Design</span>
+                        <span class="tag">Microservices</span>
+                        <span class="tag">GitHub</span>
+                        <span class="tag">Postman</span>
+                        <span class="tag">Git</span>
+                    </div>
+                </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+                <div class="container">
+                    <h2 class="section-title">Featured <span class="highlight">Projects</span></h2>
+                    <p class="section-description">Showcasing my best work and technical achievements</p>
+
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <img src="./images/ecommerce.png"/>
+                    </div>
+                    <div class="project-body">
+                        <h3>E-Commerce Platform</h3>
+                        <p>Full-stack Django e-commerce application with product management, shopping cart, order processing, and admin dashboard. Integrated payment gateway and inventory management.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Django</span>
+                            <span class="project-tag">PostgreSQL</span>
+                            <span class="project-tag">Payment Integration</span>
+                            <span class="project-tag">Docker</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://ecom.shahiddev.xyz" target="_blank" class="project-link">View Project</a>
+                            <!-- <a href="#" class="project-link">GitHub</a> -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <img src="./images/blog.png"/>
+                    </div>
+                    <div class="project-body">
+                        <h3>Blogging Application</h3>
+                        <p>Developed a full-stack blogging application using Django and PostgreSQL with robust CRUD workflows, rich-text editing, draft management, and user authentication.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Django</span>
+                            <span class="project-tag">Docker</span>
+                            <span class="project-tag">CMS</span>
+                            <span class="project-tag">PostgreSQL</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://blog.shahiddev.xyz" target="_blank" class="project-link">View Project</a>
+                            <!-- <a href="" target="_blank" class="project-link">GitHub</a> -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <img src="./images/clicksend.png"/>
+                    </div>
+                    <div class="project-body">
+                        <h3>ClickSend Django</h3>
+                        <p>Developed a Django package integrating ClickSend SMS API with a clean, extensible wrapper. Provides unified methods for sending OTPs, transactional messages, and notifications with robust error handling and configurable templates.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Django</span>
+                            <span class="project-tag">PyPi</span>
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">API</span>
+                            <span class="project-tag">ClickSend</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://pypi.org/project/django-click-send-sms/" target="_blank" class="project-link">View Project</a>
+                            <a href="https://github.com/pkshahid/django-click-send-sms" target="_blank" class="project-link">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <img src="./images/bg_deploy.png"/>
+                    </div>
+                    <div class="project-body">
+                        <h3>Bluem</h3>
+                        <p>BLUEM is a high-performance, developer-friendly blue-green deployment tool built in Go, designed to deliver zero-downtime deployments, safe rollouts, health-based traffic switching, and instant rollbacks for any Dockerized application.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Go</span>
+                            <span class="project-tag">Nginx</span>
+                            <span class="project-tag">Traefik</span>
+                            <span class="project-tag">Docker</span>
+                            <span class="project-tag">DevOps</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/pkshahid/bluem" target="_blank" class="project-link">View Project</a>
+                            <a href="https://github.com/pkshahid/bluem" target="_blank" class="project-link">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="project-card">
+                    <div class="project-header">🔐</div>
+                    <div class="project-body">
+                        <h3>OAuth 2.0 Server</h3>
+                        <p>Implemented complete OAuth 2.0 and SSO authentication server. Supports multiple grant types, token refresh, scope-based permissions, and third-party integrations.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Django</span>
+                            <span class="project-tag">OAuth 2.0</span>
+                            <span class="project-tag">Security</span>
+                            <span class="project-tag">JWT</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">View Project</a>
+                            <a href="#" class="project-link">GitHub</a>
+                        </div>
+                    </div>
+                </div> -->
+
+                <!-- <div class="project-card">
+                    <div class="project-header">📊</div>
+                    <div class="project-body">
+                        <h3>Admin Dashboard</h3>
+                        <p>Custom admin dashboard with real-time analytics, user management, and data visualization. Built with Django and modern frontend technologies for seamless interaction.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Django</span>
+                            <span class="project-tag">JavaScript</span>
+                            <span class="project-tag">Charts</span>
+                            <span class="project-tag">Real-time</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">View Project</a>
+                            <a href="#" class="project-link">GitHub</a>
+                        </div>
+                    </div>
+                </div> -->
+
+                <!-- <div class="project-card">
+                    <div class="project-header">💬</div>
+                    <div class="project-body">
+                        <h3>Chat Application</h3>
+                        <p>Real-time chat application with file upload support, Material Design UI, and WebSocket integration. Clean frontend with HTML, CSS, and JavaScript.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Django</span>
+                            <span class="project-tag">WebSocket</span>
+                            <span class="project-tag">File Upload</span>
+                            <span class="project-tag">Material UI</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">View Project</a>
+                            <a href="#" class="project-link">GitHub</a>
+                        </div>
+                    </div>
+                </div> -->
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <img src="./images/mlm.jpg"/>
+                    </div>
+                    <div class="project-body">
+                        <h3>MLM Platform</h3>
+                        <p>Multilevel marketing platform with user hierarchy, commission tracking, and automated payouts. Complex business logic implementation with scalable architecture.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Django</span>
+                            <span class="project-tag">Business Logic</span>
+                            <span class="project-tag">Scalability</span>
+                            <span class="project-tag">PostgreSQL</span>
+                            <span class="project-tag">RabbitMQ</span>
+                            <span class="project-tag">Celery</span>
+                            <span class="project-tag">Go</span>
+                            <span class="project-tag">Redis</span>
+                            <span class="project-tag">ElasticSearch</span>
+                            <span class="project-tag">REST API</span>
+                        </div>
+                        <div class="project-links">
+                            <!-- <a href="#" class="project-link">View Project</a>
+                            <a href="#" class="project-link">GitHub</a> -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <img src="./images/microservice.png"/>
+                    </div>
+                    <div class="project-body">
+                        <h3>Microservices Architecture</h3>
+                        <p>Designed and implemented microservices architecture with Docker containerization, message queues, and service communication patterns.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Docker</span>
+                            <span class="project-tag">Microservices</span>
+                            <span class="project-tag">Go</span>
+                            <span class="project-tag">Gin</span>
+                            <span class="project-tag">gRPC</span>
+                            <span class="project-tag">PostgeSQL</span>
+                            <span class="project-tag">System Design</span>
+                        </div>
+                        <div class="project-links">
+                            <!-- <a href="#" class="project-link">View Project</a> -->
+                            <!-- <a href="#" class="project-link">GitHub</a> -->
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- Contributions Section -->
+    <!-- <section id="contributions">
+                <div class="container">
+                    <h2 class="section-title">Open Source <span class="highlight">Contributions</span></h2>
+                    <p class="section-description">Contributing to the community and popular projects</p>
+
+            <div class="contributions-grid">
+                <div class="contribution-card">
+                    <h3>Django REST Framework</h3>
+                    <p class="contribution-meta">Multiple PRs Merged • Bug fixes and feature enhancements</p>
+                    <p>Contributed improvements to authentication, serialization, and API routing in DRF. Enhanced documentation and resolved critical bugs affecting production systems.</p>
+                </div>
+
+                <div class="contribution-card">
+                    <h3>FastAPI</h3>
+                    <p class="contribution-meta">Performance Optimization • Documentation</p>
+                    <p>Optimized async request handling and contributed improved examples for dependency injection. Helped improve framework documentation for complex scenarios.</p>
+                </div>
+
+                <div class="contribution-card">
+                    <h3>Docker Best Practices</h3>
+                    <p class="contribution-meta">Open Source Projects • Community Contributions</p>
+                    <p>Maintained and improved Docker configurations in multiple projects. Shared best practices for containerization and deployment strategies with the community.</p>
+                </div>
+                </div>
+            </div>
+    </section> -->
+
+    <!-- Blogs Section -->
+    <!-- <section id="blogs">
+                <div class="container">
+                    <h2 class="section-title">Latest <span class="highlight">Blogs</span></h2>
+                    <p class="section-description">Sharing knowledge and insights about backend development</p>
+
+            <div class="blogs-grid">
+                <div class="blog-card">
+                    <h3>Building Scalable Django Applications</h3>
+                    <p class="blog-meta">December 15, 2024 • 12 min read</p>
+                    <p>Deep dive into Django best practices for scalability. Learn about database optimization, caching strategies, and architectural patterns that help Django applications grow gracefully.</p>
+                </div>
+
+                <div class="blog-card">
+                    <h3>OAuth 2.0 Implementation Guide</h3>
+                    <p class="blog-meta">December 10, 2024 • 15 min read</p>
+                    <p>Complete guide to implementing OAuth 2.0 and SSO in your applications. Covers authentication flows, token management, security considerations, and practical implementation examples.</p>
+                </div>
+
+                <div class="blog-card">
+                    <h3>Docker for Backend Developers</h3>
+                    <p class="blog-meta">December 5, 2024 • 10 min read</p>
+                    <p>Getting started with Docker and containerization. Learn how to containerize Django applications, manage multi-container environments, and deploy with confidence using Docker Compose.</p>
+                </div>
+
+                <div class="blog-card">
+                    <h3>Database Design Patterns</h3>
+                    <p class="blog-meta">November 30, 2024 • 14 min read</p>
+                    <p>Essential database design patterns for building robust applications. Discuss normalization, indexing strategies, and query optimization techniques that improve performance at scale.</p>
+                </div>
+
+                <div class="blog-card">
+                    <h3>FastAPI vs Django: When to Use Which</h3>
+                    <p class="blog-meta">November 25, 2024 • 13 min read</p>
+                    <p>Comparison between FastAPI and Django. Understand the strengths of each framework, use cases, performance considerations, and how to choose the right tool for your project.</p>
+                </div>
+
+                <div class="blog-card">
+                    <h3>Monetizing Your Developer Skills</h3>
+                    <p class="blog-meta">November 20, 2024 • 11 min read</p>
+                    <p>Explore different revenue streams for developers. Learn about SaaS products, consulting, freelancing, and passive income opportunities that leverage your technical expertise.</p>
+                </div>
+                </div>
+            </div>
+    </section> -->
+
+    <!-- Photography Gallery Section -->
+    <!-- <section id="photography" class="photography">
+        <div class="container">
+            <h2 class="section-title">Photography <span class="highlight">Gallery</span></h2>
+            <p class="section-description">Explore my photography collection across different categories</p>
+
+            <div class="gallery-filters">
+                <button class="filter-btn active" onclick="filterGallery('all', this)">All</button>
+                <button class="filter-btn" onclick="filterGallery('Landscapes', this)">🏞️ Landscapes</button>
+                <button class="filter-btn" onclick="filterGallery('Portrait', this)">👤 Portrait</button>
+                <button class="filter-btn" onclick="filterGallery('Architecture', this)">🏢 Architecture</button>
+                <button class="filter-btn" onclick="filterGallery('Travel', this)">✈️ Travel</button>
+            </div>
+
+            <div class="gallery-grid" id="gallery-grid"></div>
+        </div>
+    </section> -->
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+                <div class="container">
+                    <div class="contact-content">
+                        <h2 class="section-title">Let's <span class="highlight">Connect</span></h2>
+                        <p class="contact-description">Have a project in mind? Want to collaborate? Feel free to reach out!</p>
+                
+                <div class="contact-links">
+                    <a href="mailto:shahidmohammedmsp@gmail.com" class="contact-link">
+                        <span><img src="./images/icons/gmail.png"/></span> Email
+                    </a>
+                    <a href="https://github.com/pkshahid" target="_blank" class="contact-link">
+                        <span><img src="./images/icons/github.png"/></span> GitHub
+                    </a>
+                    <a href="https://www.linkedin.com/in/mohammed-shahid-8456b218b/" target="_blank" class="contact-link">
+                        <span><img src="./images/icons/linkedin.png"/></span> LinkedIn
+                    </a>
+                    <a href="https://t.me/pkshahid" target="_blank" class="contact-link">
+                        <span><img src="./images/icons/telegram.png"/></span> Telegram
+                    </a>
+                    <a href="https://instagram.com/shahid.codes" target="_blank" class="contact-link">
+                        <span><img src="./images/icons/instagram.png"/></span> Instagram
+                    </a>
+                    </div>
+                </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>Copyright &copy; 2025 Mohammed Shahid. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" onclick="scrollToTop()">↑</div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+            <button class="lightbox-nav lightbox-prev" onclick="prevImage()">&#10094;</button>
+            <button class="lightbox-nav lightbox-next" onclick="nextImage()">&#10095;</button>
+            <img id="lightbox-img" class="lightbox-img" src="" alt="">
+            <div class="lightbox-info">
+                <h3 id="lightbox-title"></h3>
+                <p id="lightbox-meta"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Photography Data
+        const galleryData = [
+            {
+                id: 1,
+                category: 'Landscapes',
+                title: 'Mountain Sunrise',
+                image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=800&fit=crop',
+                thumbnail: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=300&fit=crop',
+                location: 'Swiss Alps',
+                date: '2024-10-15'
+            },
+            {
+                id: 2,
+                category: 'Landscapes',
+                title: 'Golden Hour Beach',
+                image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=800&fit=crop',
+                thumbnail: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=300&h=300&fit=crop',
+                location: 'Bali, Indonesia',
+                date: '2024-10-10'
+            },
+            {
+                id: 3,
+                category: 'Portrait',
+                title: 'Urban Portrait',
+                image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=800&fit=crop',
+                thumbnail: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop',
+                location: 'New York City',
+                date: '2024-09-28'
+            },
+            {
+                id: 4,
+                category: 'Architecture',
+                title: 'Modern Buildings',
+                image: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&h=800&fit=crop',
+                thumbnail: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=300&h=300&fit=crop',
+                location: 'Dubai',
+                date: '2024-09-20'
+            },
+            {
+                id: 5,
+                category: 'Travel',
+                title: 'Local Market',
+                image: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&h=800&fit=crop',
+                thumbnail: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=300&h=300&fit=crop',
+                location: 'Bangkok, Thailand',
+                date: '2024-09-15'
+            },
+            {
+                id: 6,
+                category: 'Portrait',
+                title: 'Street Portrait',
+                image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&h=800&fit=crop',
+                thumbnail: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=300&h=300&fit=crop',
+                location: 'Paris, France',
+                date: '2024-09-10'
+            },
+            {
+                id: 7,
+                category: 'Landscapes',
+                title: 'Forest Path',
+                image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=800&fit=crop',
+                thumbnail: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=300&h=300&fit=crop',
+                location: 'Black Forest, Germany',
+                date: '2024-08-25'
+            },
+            {
+                id: 8,
+                category: 'Architecture',
+                title: 'Gothic Architecture',
+                image: 'https://images.unsplash.com/photo-1482160549830-a377c1b9e5c1?w=800&h=800&fit=crop',
+                thumbnail: 'https://images.unsplash.com/photo-1482160549830-a377c1b9e5c1?w=300&h=300&fit=crop',
+                location: 'Prague, Czech Republic',
+                date: '2024-08-15'
+            }
+        ];
+
+        let currentFilter = 'all';
+        let currentImageIndex = 0;
+
+        // Render Gallery
+        function renderGallery(filter = 'all') {
+            const gallery = document.getElementById('gallery-grid');
+            const filtered = filter === 'all' ? galleryData : galleryData.filter(item => item.category === filter);
+
+            gallery.innerHTML = filtered.map((item, index) => `
+                <div class="gallery-item" onclick="openLightbox(${item.id})">
+                    <img src="${item.thumbnail}" alt="${item.title}" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-icon">📷</div>
+                        <div class="gallery-title">${item.title}</div>
+                        <div class="gallery-meta">${item.location}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Filter Gallery
+        function filterGallery(category, element) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
+            currentFilter = category;
+            renderGallery(category);
+        }
+
+        // Open Lightbox
+        function openLightbox(imageId) {
+            const item = galleryData.find(i => i.id === imageId);
+            currentImageIndex = galleryData.indexOf(item);
+            displayImage(item);
+            document.getElementById('lightbox').classList.add('active');
+        }
+
+        // Close Lightbox
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+
+        // Display Image in Lightbox
+        function displayImage(item) {
+            document.getElementById('lightbox-img').src = item.image;
+            document.getElementById('lightbox-title').textContent = item.title;
+            document.getElementById('lightbox-meta').textContent = `${item.location} • ${new Date(item.date).toLocaleDateString()}`;
+        }
+
+        // Navigate Images
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % galleryData.length;
+            displayImage(galleryData[currentImageIndex]);
+        }
+
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + galleryData.length) % galleryData.length;
+            displayImage(galleryData[currentImageIndex]);
+        }
+
+        // Keyboard Navigation
+        document.addEventListener('keydown', (e) => {
+            if (document.getElementById('lightbox').classList.contains('active')) {
+                if (e.key === 'ArrowRight') nextImage();
+                if (e.key === 'ArrowLeft') prevImage();
+                if (e.key === 'Escape') closeLightbox();
+            }
+        });
+
+        // Close lightbox on outside click
+        document.getElementById('lightbox').addEventListener('click', (e) => {
+            if (e.target.id === 'lightbox') closeLightbox();
+        });
+
+        // Initialize
+        window.addEventListener('load', () => {
+            renderGallery();
+        });
+    </script>
+
+    <script>
+        // Smooth scroll and active nav link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelectorAll('nav a').forEach(a => a.style.color = 'var(--color-text-secondary)');
+                this.style.color = 'var(--color-text)';
+            });
+        });
+
+        // Scroll to top button functionality
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.querySelector('.scroll-top');
+            if (window.scrollY > 300) {
+                scrollTop.classList.add('show');
+            } else {
+                scrollTop.classList.remove('show');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Download resume function
+        function downloadResume() {
+            const link = document.createElement("a");
+            link.href = "/assets/Mohammed_Shahid_Resume.pdf";
+            link.download = "Mohammed_Shahid_Resume.pdf";
+            link.click();
+            // Example: window.location.href = '/resume.pdf';
+        }
+
+        // Intersection Observer for fade-in animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.skill-card, .project-card, .contribution-card, .blog-card, .about-card, .strength-item').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
