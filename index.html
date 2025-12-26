@@ -1792,7 +1792,7 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>Copyright &copy; 2025 Mohammed Shahid. All rights reserved.</p>
+            <p>Copyright &copy; <span id="current-year"></span> Mohammed Shahid. All rights reserved.</p>
         </div>
     </footer>
 
@@ -2033,5 +2033,47 @@
             menu.classList.remove("show");
         });
     });
+</script>
+<script>
+    function calculateExperience(startDateString) {
+        const start = new Date(startDateString);
+        const now = new Date();
+
+        let years = now.getFullYear() - start.getFullYear();
+        let months = now.getMonth() - start.getMonth();
+        let days = now.getDate() - start.getDate();
+
+        if (days < 0) {
+            months--;
+        }
+
+        if (months < 0) {
+            years--;
+            months += 12;
+        }
+
+        return { years, months, days };
+    }
+
+    const exp = calculateExperience("2020-12-09");
+
+    let exp_w_months = `${exp.years} years`;
+    let exp_txt = `${exp.years}`;
+
+    if (exp.months > 0) {
+        exp_w_months += ` and ${exp.months} month`
+        if (exp.months > 1){
+            exp_w_months += "s";
+        }
+        exp_txt += "+"
+    } else if (exp.days > 0){
+        exp_txt += "+";
+    }
+
+    document.getElementById("experience-block-1").textContent = exp_w_months;
+
+    document.getElementById("exp-block-2").textContent = exp_txt;
+
+    document.getElementById("current-year").textContent = new Date().getFullYear();
 </script>
 </html>
